@@ -1,0 +1,6 @@
+composer.lock
+vendor/
+downloaded_resource.xls
+var/
+app/Resources/translations/
+private/

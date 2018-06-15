@@ -1,0 +1,15 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: spreadsheet_translator_configuration.yml }
+
+
+# Basic configuration for the Symfony framework features
+framework:
+
+    translator:
+        enabled: true
+        fallback: ["%locale%"]
+        paths: ['%kernel.root_dir%/../app/Resources/translations']
+
+    default_locale:  "%locale%"
+    secret:          Psssst
