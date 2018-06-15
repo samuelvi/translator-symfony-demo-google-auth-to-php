@@ -17,3 +17,22 @@ atico_spreadsheet_translator:
             temp_local_source_file: '%kernel.project_dir%/downloaded_resource.xls'
             default_locale: 'en'
             name_separator: '_'
+
+    backend:
+        provider:
+            application_name: 'Google Drive de Samuel Vicent'
+            name: 'google_drive_auth'
+            source_resource: 'https://docs.google.com/spreadsheets/d/10DhkYVbJqPPb2AF2rsbglEB-2_KKUc_7srJPM--HNyg/edit?usp=sharing'
+            credentials_path: '%kernel.project_dir%/private/credentials.json'
+            client_secret_path: '%kernel.project_dir%/private/my.json'
+
+        exporter:
+            format: 'php'
+            prefix: 'demo'
+            destination_folder: '%kernel.project_dir%/app/Resources/translations'
+            # tabs: ['contact', 'faqs']
+
+        shared:
+            temp_local_source_file: '%kernel.project_dir%/downloaded_resource.xls'
+            default_locale: 'en'
+            name_separator: '_'

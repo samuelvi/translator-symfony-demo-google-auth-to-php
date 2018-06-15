@@ -20,7 +20,7 @@ use Symfony\Component\Translation\Translator;
 
 /**
  * Reference command:
- * bin/console atico:demo:translator --sheet-name=common --env=dev
+ * bin/console atico:demo:translator --sheet=common --book=frontend --env=dev
  * bin/console atico:demo:translator --env=dev
  */
 class TranslatorCommand extends ContainerAwareCommand
@@ -31,12 +31,16 @@ class TranslatorCommand extends ContainerAwareCommand
     /** @var Translator */
     private $translator;
 
+    private $sheet;
+    private $book;
+
     protected function configure()
     {
         $this->setName('atico:demo:translator')
             ->setDescription("Translate From an Excel File to Symfony Translation format")
             ->setHelp("Translate From an Excel File to Symfony Translation format")
-            ->addOption('sheet-name', null, InputOption::VALUE_OPTIONAL, 'Single Sheet To Translate');
+            ->addOption('sheet', null, InputOption::VALUE_OPTIONAL, 'Single Sheet To Translate')
+            ->addOption('book', null, InputOption::VALUE_OPTIONAL, 'Single Book To Translate');
     }
 
     protected function initialize(InputInterface $input, OutputInterface $output)
@@ -45,24 +49,41 @@ class TranslatorCommand extends ContainerAwareCommand
         $this->translator = $this->getContainer()->get('translator');
     }
 
+    /**
+     * @throws \Exception
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $sheetName = $this->buildParamsFromInput($input);
-        $this->doExecute($output, $sheetName);
+        $this->buildParamsFromInput($input);
+        $this->checkParamsConsistency();
+        $this->doExecute($output);
     }
 
     protected function buildParamsFromInput(InputInterface $input)
     {
-        return ($input->hasOption('sheet-name')) ? $input->getOption('sheet-name') : '';
+        $this->sheet = $input->hasOption('sheet') ? $input->getOption('sheet') : null;
+        $this->book = !$input->hasOption('book') ? $input->getOption('book') : null;
     }
 
-    private function doExecute(OutputInterface $output, $sheetName)
+    /**
+     * @throws \Exception
+     */
+    protected function checkParamsConsistency()
     {
-        if (!empty($sheetName)) {
-            $this->processor->processSheet($sheetName);
-        } else {
-            $this->processor->processBook();
+        if (!empty($this->sheet) && empty($this->book)) {
+            throw new \Exception('book parameter is required for a given sheet');
         }
+    }
+
+    private function doExecute(OutputInterface $output)
+    {
+        if (!empty($this->sheet)) {
+            $this->processor->processSheet($this->sheet, $this->book);
+        } elseif (!empty($this->book)) {
+            $this->processor->processBook($this->book);
+        }
+
+        $this->processor->processAllBooks();
 
         $this->showTranslatedFragment($output);
     }
