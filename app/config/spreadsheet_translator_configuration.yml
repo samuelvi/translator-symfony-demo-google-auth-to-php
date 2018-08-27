@@ -5,7 +5,8 @@ atico_spreadsheet_translator:
             name: 'google_drive_auth'
             source_resource: 'https://docs.google.com/spreadsheets/d/1HCpvamO2eHRV2oeMgmSj9WD_AfCc6gPHUi2aFyjSsR8/edit#gid=0'
             credentials_path: '%kernel.project_dir%/private/credentials.json'
-            client_secret_path: '%kernel.project_dir%/private/my.json'
+            client_secret_path: '%kernel.project_dir%/private/token.json'
+            # document_id: '1HCpvamO2eHRV2oeMgmSj9WD_AfCc6gPHUi2aFyjSsR8'
 
         exporter:
             format: 'php'

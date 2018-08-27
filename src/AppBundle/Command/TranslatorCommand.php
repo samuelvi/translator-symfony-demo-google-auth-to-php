@@ -62,7 +62,7 @@ class TranslatorCommand extends ContainerAwareCommand
     protected function buildParamsFromInput(InputInterface $input)
     {
         $this->sheet = $input->hasOption('sheet') ? $input->getOption('sheet') : null;
-        $this->book = !$input->hasOption('book') ? $input->getOption('book') : null;
+        $this->book = $input->hasOption('book') ? $input->getOption('book') : null;
     }
 
     /**
