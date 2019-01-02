@@ -20,8 +20,9 @@ use Symfony\Component\Translation\Translator;
 
 /**
  * Reference command:
- * bin/console atico:demo:translator --sheet=common --book=frontend --env=dev
- * bin/console atico:demo:translator --env=dev
+ * Single Sheet: bin/console atico:demo:translator --sheet-name=common --book-name=frontend --env=dev
+ * Full Book: bin/console atico:demo:translator --env=dev
+ * Error: bin/console atico:demo:translator --sheet-name=common --env=dev
  */
 class TranslatorCommand extends ContainerAwareCommand
 {
@@ -31,16 +32,16 @@ class TranslatorCommand extends ContainerAwareCommand
     /** @var Translator */
     private $translator;
 
-    private $sheet;
-    private $book;
+    private $sheetName;
+    private $bookName;
 
     protected function configure()
     {
         $this->setName('atico:demo:translator')
             ->setDescription("Translate From an Excel File to Symfony Translation format")
             ->setHelp("Translate From an Excel File to Symfony Translation format")
-            ->addOption('sheet', null, InputOption::VALUE_OPTIONAL, 'Single Sheet To Translate')
-            ->addOption('book', null, InputOption::VALUE_OPTIONAL, 'Single Book To Translate');
+            ->addOption('sheet-name', null, InputOption::VALUE_OPTIONAL, 'Single Sheet To Translate')
+            ->addOption('book-name', null, InputOption::VALUE_OPTIONAL, 'Book name To Translate (Domain)');
     }
 
     protected function initialize(InputInterface $input, OutputInterface $output)
@@ -61,8 +62,8 @@ class TranslatorCommand extends ContainerAwareCommand
 
     protected function buildParamsFromInput(InputInterface $input)
     {
-        $this->sheet = $input->hasOption('sheet') ? $input->getOption('sheet') : null;
-        $this->book = $input->hasOption('book') ? $input->getOption('book') : null;
+        $this->sheetName = $input->hasOption('sheet-name') ? $input->getOption('sheet-name') : null;
+        $this->bookName = $input->hasOption('book-name') ? $input->getOption('book-name') : null;
     }
 
     /**
@@ -70,17 +71,20 @@ class TranslatorCommand extends ContainerAwareCommand
      */
     protected function checkParamsConsistency()
     {
-        if (!empty($this->sheet) && empty($this->book)) {
+        if (!empty($this->sheetName) && empty($this->bookName)) {
             throw new \Exception('book parameter is required for a given sheet');
         }
     }
 
+    /**
+     * @throws \Exception
+     */
     private function doExecute(OutputInterface $output)
     {
-        if (!empty($this->sheet)) {
-            $this->processor->processSheet($this->sheet, $this->book);
-        } elseif (!empty($this->book)) {
-            $this->processor->processBook($this->book);
+        if (!empty($this->sheetName)) {
+            $this->processor->processSheet($this->sheetName, $this->bookName);
+        } elseif (!empty($this->bookName)) {
+            $this->processor->processBook($this->bookName);
         }
 
         $this->processor->processAllBooks();

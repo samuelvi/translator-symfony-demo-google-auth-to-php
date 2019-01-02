@@ -6,16 +6,14 @@ atico_spreadsheet_translator:
             source_resource: 'https://docs.google.com/spreadsheets/d/1HCpvamO2eHRV2oeMgmSj9WD_AfCc6gPHUi2aFyjSsR8/edit#gid=0'
             credentials_path: '%kernel.project_dir%/private/credentials.json'
             client_secret_path: '%kernel.project_dir%/private/token.json'
-            # document_id: '1HCpvamO2eHRV2oeMgmSj9WD_AfCc6gPHUi2aFyjSsR8'
 
         exporter:
             format: 'php'
             prefix: 'demo'
             destination_folder: '%kernel.project_dir%/app/Resources/translations'
-            # tabs: ['contact', 'faqs']
 
         shared:
-            temp_local_source_file: '%kernel.project_dir%/downloaded_resource.xls'
+            # Optional => temp_local_source_file: '%kernel.project_dir%/downloaded_resource.xls'
             default_locale: 'en'
             name_separator: '_'
 
@@ -31,9 +29,8 @@ atico_spreadsheet_translator:
             format: 'php'
             prefix: 'demo'
             destination_folder: '%kernel.project_dir%/app/Resources/translations'
-            # tabs: ['contact', 'faqs']
 
         shared:
-            temp_local_source_file: '%kernel.project_dir%/downloaded_resource.xls'
+            # Optional => temp_local_source_file: '%kernel.project_dir%/downloaded_resource.xls'
             default_locale: 'en'
             name_separator: '_'
