@@ -1,5 +1,5 @@
 {
-  "name": "atico/translator-symfony-demo-google-to-yml",
+  "name": "atico/translator-symfony-demo-google-auth-to-php",
   "license": "MIT",
   "type": "project",
   "description": "Spreadsheet Translator. Symfony Demo Application. Takes a Google Drive spreadhseet file and creates a translation file per locale in Yml format",
