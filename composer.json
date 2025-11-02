@@ -5,33 +5,38 @@
   "description": "Spreadsheet Translator. Symfony Demo Application. Takes a Google Drive spreadhseet file and creates a translation file per locale in Yml format",
   "autoload": {
     "psr-4": {
-      "": "src/"
-    },
-    "classmap": [
-      "app/AppKernel.php"
-    ]
+      "App\\": "src/App"
+    }
   },
   "require": {
-    "php": ">=5.5.9",
-    "symfony/symfony": "^3.1",
-    "atico/spreadsheet-translator-core": "^1.0",
-    "atico/spreadsheet-translator-symfony-bundle": "^1.0",
-    "atico/spreadsheet-translator-provider-googledriveauth": "^1.0",
-    "atico/spreadsheet-translator-reader-xlsx": "^1.0",
-    "atico/spreadsheet-translator-exporter-php": "^1.0"
+    "php": ">=8.4",
+    "samuelvi/spreadsheet-translator-core": "^8.4",
+    "samuelvi/spreadsheet-translator-symfony-bundle": "^8.0",
+    "samuelvi/spreadsheet-translator-provider-googledriveauth": "^8.0",
+    "samuelvi/spreadsheet-translator-reader-xlsx": "^8.1",
+    "samuelvi/spreadsheet-translator-exporter-php": "^8.0",
+    "symfony/console": "^7.0",
+    "symfony/dotenv": "^7.0",
+    "symfony/filesystem": "^7.0",
+    "symfony/finder": "^7.0",
+    "symfony/framework-bundle": "^7.0",
+    "symfony/http-foundation": "^7.0",
+    "symfony/http-kernel": "^7.0",
+    "symfony/routing": "^7.0",
+    "symfony/runtime": "^7.0",
+    "symfony/security-bundle": "^7.0",
+    "symfony/translation": "^7.0",
+    "symfony/yaml": "^7.0",
+    "symfony/monolog-bundle" : "3.10.0"
+  },
+  "require-dev": {
+    "rector/jack": "^0.2.9",
+    "rector/rector": "^2.1"
   },
   "config": {
-    "bin-dir": "bin"
-  },
-  "scripts": {
-    "post-create-project-cmd": [
-      "bash ./bin/create_translations_folder.sh"
-    ],
-    "post-update-cmd": [
-      "bash ./bin/create_translations_folder.sh"
-    ],
-    "post-install-cmd": [
-      "bash ./bin/create_translations_folder.sh"
-    ]
+    "bin-dir": "bin",
+    "allow-plugins": {
+      "symfony/runtime": true
+    }
   }
 }

@@ -4,83 +4,203 @@ Spreadsheet Translator Symfony Demo Application - Use Case
 Introduction
 ------------
 
-Lightweight Symfony Demo Application for the Spreadsheet Translator functionallity.
- The demo brings a command that takes a Google Drive spreadhseet file and creates a translation file per locale in Php format.
-
-
-Installation
-------------
-
-composer create-project atico/translator-symfony-demo-google-to-yml
-
-This will install the demo application into your computer
-
-The source demo spreadsheet file is located at https://docs.google.com/spreadsheets/d/1HCpvamO2eHRV2oeMgmSj9WD_AfCc6gPHUi2aFyjSsR8/edit#gid=0
-
-
-Running the demo
----------
-
-type in you terminal: bin/console atico:demo:translator --sheet-name=common
-
-This command will generate the translation files that will be stored into app/translations folder.
-
-The generated files will be:
-
-```
-  app
-  |
-  └───Resources
-     │
-     └──translations
-         │  demo_common.en_GB.php
-         │  demo_common.es_ES.php   
-         │  demo_common.fr_FR.php
-
-```      
-                              
-demo_common.en_GB.yml will contain:
-
-```php
-  <?php
-  return array (
-    'homepage_title' => 'Spreadsheet translator',
-    'homepage_subtitle' => 'Translator of web pages from spreadsheets',
-  );
-```
-
-Notes
------
-
-
-composer.json will include the following Spreadsheet Translator dependencies:
-```
-  "atico/spreadsheet-translator-core": "^1.0",
-  "atico/spreadsheet-translator-symfony-bundle": "^1.0",
-  "atico/spreadsheet-translator-provider-googledrive": "^1.0",
-  "atico/spreadsheet-translator-reader-xlsx": "^1.0",
-  "atico/spreadsheet-translator-exporter-yml": "^1.0",
-```
-
-
-Related
-------------
-
-Symfony Bundle:
-- <a href="https://github.com/samuelvi/spreadsheet-translator-symfony-bundle">Symfony Bundle</a>
-
-Symfony Demos:
-
-- <a href="https://github.com/samuelvi/translator-symfony-demo-local-file-to-php">Symfony Demo. Takes a local file and creates translation files per locale in php format</a>
-- <a href="https://github.com/samuelvi/translator-symfony-demo-google-to-yml">Symfony Demo. Takes a google drive spreadsheet and creates translation files per locale in yml format</a>
-- <a href="https://github.com/samuelvi/translator-symfony-demo-onedrive-to-xliff">Symfony Demo. Takes a microsoft one drive spreadsheet and creates translation files per locale in xliff format</a>
+Lightweight Symfony Demo Application for the Spreadsheet Translator functionality.
+This demo provides a command that connects to Google Drive with authentication, reads a spreadsheet file, and generates translation files per locale in PHP format.
 
 
 Requirements
 ------------
 
-  * PHP >=5.5.9
-  * Symfony ~2.3|~3.0
+* PHP >= 8.4
+* Symfony ^7.0
+* Composer
+
+
+Installation
+------------
+
+```bash
+composer create-project atico/translator-symfony-demo-google-auth-to-php
+```
+
+This will install the demo application on your computer.
+
+
+Google OAuth Setup
+------------------
+
+This application uses Google OAuth 2.0 to access secured Google Sheets. Follow these steps to configure authentication:
+
+### 1. Create Google Cloud Project and Enable APIs
+
+1. Go to [Google Cloud Console](https://console.developers.google.com)
+2. Create a new project or select an existing one
+3. Navigate to **"APIs & Services" > "Library"**
+4. Search and enable **"Google Sheets API"**
+5. Search and enable **"Google Drive API"**
+
+### 2. Create OAuth 2.0 Credentials
+
+1. Go to **"APIs & Services" > "Credentials"**
+2. Click **"Create Credentials" > "OAuth client ID"**
+3. If prompted, configure the OAuth consent screen:
+   - Add your email and application name
+   - User Type: External (or Internal if using Google Workspace)
+4. Select application type: **"Desktop application"**
+5. Give it a name (e.g., "Spreadsheet Translator")
+6. Click **"Create"**
+7. Download the JSON file
+8. Rename it to `credentials.json`
+9. Place it in the `private/` directory
+
+### 3. Add Test Users (Optional but Recommended)
+
+To avoid verification warnings during development:
+
+1. Go to **"APIs & Services" > "OAuth consent screen"**
+2. Scroll to **"Test users"** section
+3. Click **"+ ADD USERS"**
+4. Add your Google email address
+5. Save changes
+
+### 4. First-Time Authentication
+
+Run the translator command:
+
+```bash
+bin/console atico:demo:translator --sheet-name=common --book-name=frontend
+```
+
+The system will prompt you to authenticate:
+
+1. **Copy the URL** displayed in the terminal
+2. **Open it in your browser**
+3. **Sign in** with your Google account
+4. You may see a warning: *"Google hasn't verified this app"*
+   - Click **"Advanced"** or **"Advanced settings"**
+   - Click **"Go to Spreadsheet Translator (unsafe)"**
+   - This is safe - it's your own application
+5. **Accept the permissions** requested
+6. Google will redirect to `localhost` and show a connection error - **this is expected**
+7. **Look at the browser URL bar** - it contains the verification code:
+   ```
+   http://localhost/?code=4/0AeanS0Z...LONG_CODE...&scope=https://...
+   ```
+8. **Extract the verification code from the URL:**
+   - The code is the value that comes **after** `code=` and **before** `&`
+   - For example, if the URL is:
+     ```
+     http://localhost/?code=4/0AeanS0Zabcdefghijklmnopqrstuvwxyz1234567890&scope=https://...
+     ```
+   - The code to copy is:
+     ```
+     4/0AeanS0Zabcdefghijklmnopqrstuvwxyz1234567890
+     ```
+9. **Paste the code into the terminal** where it says "Enter verification code:"
+
+The system will save your credentials in `private/token.json` and you won't need to authenticate again unless you delete this file.
+
+### 5. Configuration
+
+Edit `config/packages/atico_spreadsheet_translator.yaml` to configure your spreadsheets:
+
+```yaml
+atico_spreadsheet_translator:
+  frontend:
+    provider:
+      application_name: 'Your App Name'
+      name: 'google_drive_auth'
+      source_resource: 'YOUR_GOOGLE_SHEETS_URL'
+      credentials_path: '%kernel.project_dir%/private/credentials.json'
+      client_secret_path: '%kernel.project_dir%/private/token.json'
+```
+
+Replace `YOUR_GOOGLE_SHEETS_URL` with your Google Sheets URL.
+
+**Note:** Make sure the Google account you authenticate with has access to the spreadsheet you want to translate.
+
+
+Running the demo
+----------------
+
+Execute the following command in your terminal:
+
+```bash
+bin/console atico:demo:translator --sheet-name=common --book-name=frontend
+```
+
+This command will generate translation files that will be stored in the `translations/` folder.
+
+### Generated files structure:
+
+```
+translations/
+│  demo_common.en_GB.php
+│  demo_common.es_ES.php
+│  demo_common.fr_FR.php
+```
+
+### Example output
+
+`demo_common.en_GB.php` will contain:
+
+```php
+<?php
+return [
+    'homepage' => [
+        'title' => 'Secured Spreadsheet translator',
+        'subtitle' => 'Translator of web pages from secured spreadsheet',
+    ],
+];
+```
+
+
+Dependencies
+------------
+
+This project uses the Spreadsheet Translator library ecosystem. Check `composer.json` for the complete list of dependencies.
+
+Main components:
+- **spreadsheet-translator-core**: Core functionality
+- **spreadsheet-translator-symfony-bundle**: Symfony integration
+- **spreadsheet-translator-provider-googledriveauth**: Google Drive authentication
+- **spreadsheet-translator-reader-xlsx**: Excel file reader
+- **spreadsheet-translator-exporter-php**: PHP format exporter
+
+
+Docker Support
+--------------
+
+The project includes Docker support with a Makefile for convenient development:
+
+```bash
+# Show all available commands
+make help
+
+# Start the application
+make up
+
+# Run the translator command
+make console atico:demo:translator --sheet-name=common --book-name=frontend
+
+# Access the container shell
+make shell
+
+# Stop the application
+make down
+```
+
+
+Related Projects
+----------------
+
+### Symfony Bundle:
+- [Spreadsheet Translator Symfony Bundle](https://github.com/samuelvi/spreadsheet-translator-symfony-bundle)
+
+### Symfony Demos:
+- [Symfony Demo - Local File to PHP](https://github.com/samuelvi/translator-symfony-demo-local-file-to-php) - Takes a local file and creates translation files per locale in PHP format
+- [Symfony Demo - Google to YML](https://github.com/samuelvi/translator-symfony-demo-google-to-yml) - Takes a Google Drive spreadsheet and creates translation files per locale in YML format
+- [Symfony Demo - OneDrive to XLIFF](https://github.com/samuelvi/translator-symfony-demo-onedrive-to-xliff) - Takes a Microsoft OneDrive spreadsheet and creates translation files per locale in XLIFF format
 
 
 Contributing
