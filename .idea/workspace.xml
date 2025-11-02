@@ -4,27 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aea8747b-01f0-4bcf-9783-0c4358892b9a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker/docker-compose.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker/php/php.ini" afterDir="false" />
+    <list default="true" id="aea8747b-01f0-4bcf-9783-0c4358892b9a" name="Changes" comment="Migrate project to Symfony ^7 and php 8.4. Includes restructuring configurations, enabling MicroKernel, updating translations, and removing deprecated files and settings.">
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/AppKernel.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/autoload.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/config/config.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/config/dev/config_dev.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/config/parameters.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/config/parameters.yml.dist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/config/prod/config_prod.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/config/spreadsheet_translator_configuration.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/console" beforeDir="false" afterPath="$PROJECT_DIR$/bin/console" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/create_translations_folder.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/.htaccess" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/AppBundle.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Command/TranslatorCommand.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,12 +159,25 @@
       <workItem from="1761491700611" duration="734000" />
       <workItem from="1761543789725" duration="258000" />
       <workItem from="1761996723663" duration="876000" />
-      <workItem from="1762077963217" duration="2769000" />
+      <workItem from="1762077963217" duration="3083000" />
     </task>
+    <task id="LOCAL-00001" summary="Migrate project to Symfony ^7 and php 8.4. Includes restructuring configurations, enabling MicroKernel, updating translations, and removing deprecated files and settings.">
+      <option name="closed" value="true" />
+      <created>1762080826298</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1762080826298</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Migrate project to Symfony ^7 and php 8.4. Includes restructuring configurations, enabling MicroKernel, updating translations, and removing deprecated files and settings." />
+    <option name="LAST_COMMIT_MESSAGE" value="Migrate project to Symfony ^7 and php 8.4. Includes restructuring configurations, enabling MicroKernel, updating translations, and removing deprecated files and settings." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

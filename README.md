@@ -33,7 +33,7 @@ This application uses Google OAuth 2.0 to access secured Google Sheets. Follow t
 
 ### 1. Create Google Cloud Project and Enable APIs
 
-1. Go to [Google Cloud Console](https://console.developers.google.com)
+1. Go to [Google Cloud Console](https://console.cloud.google.com)
 2. Create a new project or select an existing one
 3. Navigate to **"APIs & Services" > "Library"**
 4. Search and enable **"Google Sheets API"**
@@ -199,7 +199,7 @@ Related Projects
 
 ### Symfony Demos:
 - [Symfony Demo - Local File to PHP](https://github.com/samuelvi/translator-symfony-demo-local-file-to-php) - Takes a local file and creates translation files per locale in PHP format
-- [Symfony Demo - Google to YML](https://github.com/samuelvi/translator-symfony-demo-google-to-yml) - Takes a Google Drive spreadsheet and creates translation files per locale in YML format
+- [Symfony Demo - Google to YML](https://github.com/samuelvi/translator-symfony-demo-google-drive-provider-yml-exporter) - Takes a non secured Google Drive spreadsheet and creates translation files per locale in YML format
 - [Symfony Demo - OneDrive to XLIFF](https://github.com/samuelvi/translator-symfony-demo-onedrive-to-xliff) - Takes a Microsoft OneDrive spreadsheet and creates translation files per locale in XLIFF format
 
 
@@ -208,7 +208,7 @@ Contributing
 
 We welcome contributions to this project, including pull requests and issues (and discussions on existing issues).
 
-If you'd like to contribute code but aren't sure what, the issues list is a good place to start. If you're a first-time code contributor, you may find Github's guide to <a href="https://guides.github.com/activities/forking/">forking projects</a> helpful.
+If you'd like to contribute code but aren't sure what, the issues list is a good place to start. If you're a first-time code contributor, you may find Github's guide to [forking projects](https://docs.github.com/get-started/quickstart/fork-a-repo) helpful.
 
 All contributors (whether contributing code, involved in issue discussions, or involved in any other way) must abide by our code of conduct.
 
