@@ -168,11 +168,84 @@ Main components:
 - **spreadsheet-translator-exporter-php**: PHP format exporter
 
 
-Docker Support
---------------
+Testing
+-------
 
-The project includes Docker support with a Makefile for convenient development:
+The project includes comprehensive unit tests using PHPUnit 11:
 
+```bash
+# Run all tests
+bin/phpunit
+# or
+make test
+
+# Run tests with coverage report (generates coverage/index.html)
+bin/phpunit --coverage-html coverage
+# or
+make test-coverage
+
+# Run specific test file
+bin/phpunit tests/Command/TranslatorCommandTest.php
+```
+
+### Test Structure
+
+- `tests/Command/TranslatorCommandTest.php` - Unit tests for the translator command
+- `tests/KernelTest.php` - Integration tests for the Symfony kernel
+- `tests/bootstrap.php` - PHPUnit bootstrap file
+- `phpunit.xml.dist` - PHPUnit configuration
+
+### Code Quality
+
+The project uses Rector for automated code refactoring and modernization to PHP 8.4 and Symfony 7:
+
+```bash
+# Apply Rector changes
+bin/rector process
+# or
+make rector
+
+# Preview Rector changes without applying them
+bin/rector process --dry-run
+# or
+make rector-dry
+```
+
+Development
+-----------
+
+### Makefile Commands
+
+The project includes a comprehensive Makefile for convenient development. Run `make help` to see all available commands:
+
+**Local Development (without Docker):**
+```bash
+# Install dependencies
+make install
+
+# Run tests
+make test
+
+# Run tests with coverage report
+make test-coverage
+
+# Run Rector to modernize code
+make rector
+
+# Preview Rector changes without applying them
+make rector-dry
+
+# Run all code quality checks
+make lint
+
+# Run the translator command
+make translate
+
+# Clear Symfony cache
+make cache-clear
+```
+
+**Docker Development:**
 ```bash
 # Show all available commands
 make help
@@ -180,8 +253,14 @@ make help
 # Start the application
 make up
 
-# Run the translator command
-make console atico:demo:translator --sheet-name=common --book-name=frontend
+# Run tests inside Docker
+make docker-test
+
+# Run the translator command inside Docker
+make docker-translate
+
+# Run Rector inside Docker
+make docker-rector
 
 # Access the container shell
 make shell

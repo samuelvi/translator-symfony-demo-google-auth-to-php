@@ -1,0 +1,18 @@
+# Test environment configuration - minimal config to avoid warnings
+atico_spreadsheet_translator:
+  test_book:
+    provider:
+      application_name: 'Test Application'
+      name: 'google_drive_auth'
+      source_resource: 'https://example.com/test'
+      credentials_path: '%kernel.project_dir%/tests/fixtures/credentials.json'
+      client_secret_path: '%kernel.project_dir%/tests/fixtures/token.json'
+
+    exporter:
+      format: 'php'
+      prefix: 'test_'
+      destination_folder: '%kernel.project_dir%/var/test/translations'
+
+    shared:
+      default_locale: 'en'
+      name_separator: '_'
