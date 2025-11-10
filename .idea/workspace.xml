@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aea8747b-01f0-4bcf-9783-0c4358892b9a" name="Changes" comment="Update project references and documentation links in README.md.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rector.php" beforeDir="false" afterPath="$PROJECT_DIR$/rector.php" afterDir="false" />
-    </list>
+    <list default="true" id="aea8747b-01f0-4bcf-9783-0c4358892b9a" name="Changes" comment="setup testing suite with PHPUnit, GitHub Actions, and related fixtures" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -109,6 +104,34 @@
       <path value="$PROJECT_DIR$/vendor/symfony/property-info" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php83" />
+      <path value="$PROJECT_DIR$/vendor/staabm/side-effects-detector" />
+      <path value="$PROJECT_DIR$/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/code-unit-reverse-lookup" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/code-unit" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/cli-parser" />
+      <path value="$PROJECT_DIR$/vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-invoker" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/complexity" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/lines-of-code" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/type" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/vendor/symfony/phpunit-bridge" />
+      <path value="$PROJECT_DIR$/vendor/theseer/tokenizer" />
     </include_path>
   </component>
   <component name="ProjectColorInfo">{
@@ -142,6 +165,9 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/.claude" />
+    </key>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -164,7 +190,7 @@
       <workItem from="1761996723663" duration="876000" />
       <workItem from="1762077963217" duration="3834000" />
       <workItem from="1762099845069" duration="43000" />
-      <workItem from="1762801980031" duration="381000" />
+      <workItem from="1762801980031" duration="1478000" />
     </task>
     <task id="LOCAL-00001" summary="Migrate project to Symfony ^7 and php 8.4. Includes restructuring configurations, enabling MicroKernel, updating translations, and removing deprecated files and settings.">
       <option name="closed" value="true" />
@@ -182,7 +208,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762081125240</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="setup testing suite with PHPUnit, GitHub Actions, and related fixtures">
+      <option name="closed" value="true" />
+      <created>1762803457835</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1762803457835</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -191,7 +225,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Migrate project to Symfony ^7 and php 8.4. Includes restructuring configurations, enabling MicroKernel, updating translations, and removing deprecated files and settings." />
     <MESSAGE value="Update project references and documentation links in README.md." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update project references and documentation links in README.md." />
+    <MESSAGE value="setup testing suite with PHPUnit, GitHub Actions, and related fixtures" />
+    <option name="LAST_COMMIT_MESSAGE" value="setup testing suite with PHPUnit, GitHub Actions, and related fixtures" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
