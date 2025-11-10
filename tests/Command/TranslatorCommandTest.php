@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Command;
 
+use PHPUnit\Framework\MockObject\MockObject;
 use Atico\SpreadsheetTranslator\Core\SpreadsheetTranslator;
 use App\Command\TranslatorCommand;
 use App\Tests\Fixtures\TestTranslator;
@@ -13,17 +14,15 @@ use Symfony\Component\Console\Tester\CommandTester;
 
 final class TranslatorCommandTest extends TestCase
 {
-    private SpreadsheetTranslator $spreadsheetTranslator;
-
-    private TestTranslator $translator;
+    private MockObject $spreadsheetTranslator;
 
     private TranslatorCommand $command;
 
     protected function setUp(): void
     {
         $this->spreadsheetTranslator = $this->createMock(SpreadsheetTranslator::class);
-        $this->translator = new TestTranslator();
-        $this->command = new TranslatorCommand($this->spreadsheetTranslator, $this->translator);
+        $translator = new TestTranslator();
+        $this->command = new TranslatorCommand($this->spreadsheetTranslator, $translator);
     }
 
     public function testExecuteWithBothOptions(): void
