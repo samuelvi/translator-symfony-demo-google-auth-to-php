@@ -8,14 +8,13 @@ on:
 
 jobs:
   tests:
-    name: PHP ${{ matrix.php-version }} - Symfony ${{ matrix.symfony-version }}
+    name: PHP ${{ matrix.php-version }}
     runs-on: ubuntu-latest
 
     strategy:
       fail-fast: false
       matrix:
         php-version: ['8.4']
-        symfony-version: ['^7.0']
 
     steps:
       - name: Checkout code
@@ -25,8 +24,8 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-version }}
-          extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite, dom, filter, gd, json, mbstring, pdo
-          coverage: pcov
+          extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite, dom, filter, gd, json, pdo
+          coverage: none
           tools: composer:v2
 
       - name: Get composer cache directory
@@ -43,15 +42,11 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress --no-interaction
 
-      - name: Run PHPUnit tests
-        run: bin/phpunit --coverage-clover coverage.xml
+      - name: Check PHP syntax
+        run: find src tests -name "*.php" -print0 | xargs -0 -n1 php -l
 
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
-        with:
-          files: ./coverage.xml
-          fail_ci_if_error: false
-          verbose: true
+      - name: Run PHPUnit tests
+        run: bin/phpunit --configuration phpunit.ci.xml --no-coverage
 
   code-quality:
     name: Code Quality Checks

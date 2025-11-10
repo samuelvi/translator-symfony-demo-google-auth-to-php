@@ -37,13 +37,34 @@ make shell
 make down
 ```
 
+### Testing
+```bash
+# Run all tests
+make test
+# or
+bin/phpunit
+
+# Run tests with coverage report
+make test-coverage
+
+# Run tests with CI configuration (no warnings)
+bin/phpunit --configuration phpunit.ci.xml
+```
+
 ### Code Quality
 ```bash
 # Run Rector for automated refactoring and PHP 8.4 compliance
-vendor/bin/rector process
+make rector
+# or
+bin/rector process
 
 # Dry run to preview changes
-vendor/bin/rector process --dry-run
+make rector-dry
+# or
+bin/rector process --dry-run
+
+# Run all code quality checks (rector + tests)
+make lint
 ```
 
 ### Standard Symfony Commands
@@ -137,15 +158,66 @@ Authentication requires:
 
 The OAuth redirect URL is `http://localhost` - users must extract the verification code from the browser URL after authentication.
 
+## Testing Infrastructure
+
+The project includes comprehensive unit tests using PHPUnit 11:
+
+**Test Files:**
+- `tests/Command/TranslatorCommandTest.php` - Unit tests for the translator command (11 tests)
+- `tests/KernelTest.php` - Integration tests for the Symfony kernel (3 tests)
+- `tests/Fixtures/TestTranslator.php` - Test stub for TranslatorInterface
+- `tests/bootstrap.php` - PHPUnit bootstrap file
+
+**PHPUnit Configurations:**
+
+1. **`phpunit.xml.dist`** (Local development)
+   - Suppresses vendor warnings for clean output
+   - Strict error handling for project code
+   - Ideal for rapid development feedback
+
+2. **`phpunit.ci.xml`** (CI/CD environments)
+   - More permissive error handling for external dependencies
+   - Disables coverage to speed up CI runs
+   - Use: `bin/phpunit --configuration phpunit.ci.xml`
+
+**Test Environment Configuration:**
+- Separate config in `config/packages/test/` to avoid runtime warnings
+- Minimal configuration to prevent null pointer issues in bundles
+
+## Continuous Integration
+
+The project uses GitHub Actions for automated testing (`.github/workflows/tests.yml`):
+
+**Test Job:**
+- Runs on every push to `master`, `main`, or `develop` branches
+- Executes on pull requests
+- Uses PHP 8.4 on Ubuntu latest
+- Steps:
+  1. Checkout code
+  2. Setup PHP with required extensions
+  3. Cache Composer dependencies
+  4. Install dependencies
+  5. Check PHP syntax across all files
+  6. Run PHPUnit tests with CI configuration
+
+**Code Quality Job:**
+- Runs Rector in dry-run mode to verify code quality
+- Ensures code follows PHP 8.4 and Symfony 7 best practices
+
+All tests must pass before merging pull requests.
+
 ## Rector Configuration
 
-The project uses Rector (`rector.php`) for automated refactoring with:
-- PHP 8.4 compliance rules (`LevelSetList::UP_TO_PHP_84`)
+The project uses Rector (`rector.php`) for automated refactoring with modern syntax:
+- Uses `RectorConfig::configure()` fluent API
+- PHP 8.4 compliance via `withPhpSets(php84: true)`
+- Prepared sets: dead code removal, code quality, type declarations, privatization, early return
 - Symfony 7.0 rules and code quality standards
 - Doctrine annotations to attributes conversion
-- Automatic import optimization
+- PHPUnit 11 modernization rules
+- Automatic import optimization with parallel processing
 
-Run `vendor/bin/rector process` to apply automated improvements.
+Run `make rector` or `bin/rector process` to apply automated improvements.
 
 ## Project Requirements
 

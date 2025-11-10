@@ -1,6 +1,28 @@
+# Dependencies
 composer.lock
 vendor/
-downloaded_resource.xls
+
+# Symfony
 var/
-app/Resources/translations/
+
+# Application specific
+downloaded_resource.xls
 private/
+
+# Testing
+.phpunit.cache/
+coverage/
+phpunit.xml
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+

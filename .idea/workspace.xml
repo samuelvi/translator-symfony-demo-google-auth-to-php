@@ -4,7 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aea8747b-01f0-4bcf-9783-0c4358892b9a" name="Changes" comment="setup testing suite with PHPUnit, GitHub Actions, and related fixtures" />
+    <list default="true" id="aea8747b-01f0-4bcf-9783-0c4358892b9a" name="Changes" comment="update IDE configuration for PHPUnit setup and update included paths">
+      <change afterPath="$PROJECT_DIR$/translations/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.claude/CLAUDE.md" beforeDir="false" afterPath="$PROJECT_DIR$/.claude/CLAUDE.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/tests.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/tests.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.phpunit.cache/test-results" beforeDir="false" afterPath="$PROJECT_DIR$/.phpunit.cache/test-results" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/translations/demo_common.en_GB.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/translations/demo_common.es_ES.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/translations/demo_common.fr_FR.php" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -142,27 +153,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Volumes/SAMSUNG2TB/Projects/OpenSource/SpreadsheetTranslator/SymfonyDemo-GoogleAuthProvider-PhpExporter&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.webide.settings.project.settings.php&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "com.codeium.enabled": "true",
+    "git-widget-placeholder": "master",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "/Volumes/SAMSUNG2TB/Projects/OpenSource/SpreadsheetTranslator/SymfonyDemo-GoogleAuthProvider-PhpExporter/translations",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.webide.settings.project.settings.php",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/translations" />
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -190,7 +202,7 @@
       <workItem from="1761996723663" duration="876000" />
       <workItem from="1762077963217" duration="3834000" />
       <workItem from="1762099845069" duration="43000" />
-      <workItem from="1762801980031" duration="1478000" />
+      <workItem from="1762801980031" duration="1924000" />
     </task>
     <task id="LOCAL-00001" summary="Migrate project to Symfony ^7 and php 8.4. Includes restructuring configurations, enabling MicroKernel, updating translations, and removing deprecated files and settings.">
       <option name="closed" value="true" />
@@ -216,7 +228,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762803457835</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="update IDE configuration for PHPUnit setup and update included paths">
+      <option name="closed" value="true" />
+      <created>1762803523707</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1762803523707</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -226,7 +246,8 @@
     <MESSAGE value="Migrate project to Symfony ^7 and php 8.4. Includes restructuring configurations, enabling MicroKernel, updating translations, and removing deprecated files and settings." />
     <MESSAGE value="Update project references and documentation links in README.md." />
     <MESSAGE value="setup testing suite with PHPUnit, GitHub Actions, and related fixtures" />
-    <option name="LAST_COMMIT_MESSAGE" value="setup testing suite with PHPUnit, GitHub Actions, and related fixtures" />
+    <MESSAGE value="update IDE configuration for PHPUnit setup and update included paths" />
+    <option name="LAST_COMMIT_MESSAGE" value="update IDE configuration for PHPUnit setup and update included paths" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
